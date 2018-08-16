@@ -3,6 +3,18 @@
 #include <string.h>
 using namespace std;
 #define LV 20
+#define Init 0
+#define Life 3
+#define TRUE 1
+#define MAX_VALUE 9
+#define BONUS_SCORE 3
+#define BONUS_LIFE 7
+#define LV_1 1
+#define LV_2 2
+#define LV_3 3
+#define LV_4 4
+#define LV_5 5
+
 
 
 
@@ -37,14 +49,14 @@ int main()
 	char input;
 
 	// 초기 설정
-	int lv = 1;
-	int i = 0;
-	int Exp = 0;
-	int life = 3;
-	int comp = 0;
-	int bonus = 0;
-	int bExp = 0;
-	int blife = 0;
+	int lv = TRUE;
+	int i = Init;
+	int Exp = Init;
+	int life = Life;
+	int comp = Init;
+	int bonus = Init;
+	int bExp = Init;
+	int blife = Init;
 
 
 	// 초기 화면
@@ -60,18 +72,18 @@ int main()
 	while (1)
 	{
 		//보너스 생성 
-		bonus = rand() % 9;
-		if (bonus == 3)
-			bExp = 1;
-		else if (bonus == 7)
-			blife = 1;
+		bonus = rand() % MAX_VALUE;
+		if (bonus == BONUS_SCORE)
+			bExp = TRUE;
+		else if (bonus == BONUS_LIFE)
+			blife = TRUE;
 
 		//일반문제 단어 출력 및 입력(레벨 확인)
-		if (lv == 1)
+		if (lv == LV_1)
 		{
-			if (bExp == 1)
+			if (bExp == TRUE)
 				cout << "BONUS EXP" << endl;
-			if (blife == 1)
+			if (blife == TRUE)
 				cout << "BONUS LIFE" << endl;
 
 
@@ -81,11 +93,11 @@ int main()
 			i++;//단어 변수
 
 		}
-		else if (lv == 2)
+		else if (lv == LV_2)
 		{
-			if (bExp == 1)
+			if (bExp == TRUE)
 				cout << "BONUS EXP" << endl;
-			if (blife == 1)
+			if (blife == TRUE)
 				cout << "BONUS LIFE" << endl;
 
 			strcpy(outPut, wordLV2[i]);
@@ -93,33 +105,33 @@ int main()
 			i++;//단어 변수
 
 		}
-		else if (lv == 3)
+		else if (lv == LV_3)
 		{
-			if (bExp == 1)
+			if (bExp == TRUE)
 				cout << "BONUS EXP" << endl;
-			if (blife == 1)
+			if (blife == TRUE)
 				cout << "BONUS LIFE" << endl;
 			strcpy(outPut, wordLV3[i]);
 			cout << outPut << endl;//출력
 			i++;//단어 변수
 		}
 
-		else if (lv == 4)
+		else if (lv == LV_4)
 		{
-			if (bExp == 1)
+			if (bExp == TRUE)
 				cout << "BONUS EXP" << endl;
-			if (blife == 1)
+			if (blife == TRUE)
 				cout << "BONUS LIFE" << endl;
 			strcpy(outPut, wordLV4[i]);
 			cout << outPut << endl;//출력
 			i++;//단어 변수
 		}
 
-		else if (lv == 5)
+		else if (lv == LV_5)
 		{
-			if (bExp == 1)
+			if (bExp == TRUE)
 				cout << "BONUS EXP" << endl;
-			if (blife == 1)
+			if (blife == TRUE)
 				cout << "BONUS LIFE" << endl;
 			strcpy(outPut, wordLV4[i]);
 			cout << outPut << endl;//출력
@@ -157,29 +169,29 @@ int main()
 
 
 		//레벨업 가능 판별 후 가능이면 레벨업
-		if (lv == 1 && Exp >= 3)
+		if (lv == LV_1 && Exp >= 3)
 		{
 			lv++;
 			i = 0;
 
 		}
 
-		else if (lv == 2 && Exp >= 6)
+		else if (lv == LV_2 && Exp >= 6)
 		{
 			lv++;
 
 		}
-		else if (lv == 3 && Exp >= 9)
+		else if (lv == LV_3 && Exp >= 9)
 		{
 			lv++;
 
 		}
-		else if (lv == 4 && Exp >= 12)
+		else if (lv == LV_4 && Exp >= 12)
 		{
 			lv++;
 
 		}
-		else if (lv == 5 && Exp >= 15)
+		else if (lv == LV_5 && Exp >= 15)
 		{
 			lv++;
 		}
