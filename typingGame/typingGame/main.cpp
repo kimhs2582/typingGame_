@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdlib.h>
-#include <string.h>
+#include <time.h>
+#include "Data.h"
 using namespace std;
 #define LV 20
 #define Init 0
@@ -15,13 +16,26 @@ using namespace std;
 #define LV_4 4
 #define LV_5 5
 
+void Initialize(Data* data)
+{
+	srand((unsigned)time(NULL));
+	
+	data->lv = TRUE;
+	data->Exp = Init;
+	data->life = Life;
+	data->comp = Init;
+	data->bonus = Init;
+	data->bExp = Init;
+	data->blife = Init;
 
+}
 
 
 int main()
 {
-
-
+	int i = Init;
+	Data data;
+	Initialize(&data);
 	const char wordLV1[LV][32] =
 	{
 		"나라","국가","날림","엄마","그림","파리","모기","사과"
@@ -49,14 +63,7 @@ int main()
 	char input;
 
 	// 초기 설정
-	int lv = TRUE;
-	int i = Init;
-	int Exp = Init;
-	int life = Life;
-	int comp = Init;
-	int bonus = Init;
-	int bExp = Init;
-	int blife = Init;
+	
 
 
 	// 초기 화면
@@ -72,18 +79,18 @@ int main()
 	while (1)
 	{
 		//보너스 생성 
-		bonus = rand() % MAX_VALUE;
-		if (bonus == BONUS_SCORE)
-			bExp = TRUE;
-		else if (bonus == BONUS_LIFE)
-			blife = TRUE;
+		data.bonus = rand() % MAX_VALUE;
+		if (data.bonus == BONUS_SCORE)
+			data.bExp = TRUE;
+		else if (data.bonus == BONUS_LIFE)
+			data.blife = TRUE;
 
 		//일반문제 단어 출력 및 입력(레벨 확인)
-		if (lv == LV_1)
+		if (data.lv == LV_1)
 		{
-			if (bExp == TRUE)
+			if (data.bExp == TRUE)
 				cout << "BONUS EXP" << endl;
-			if (blife == TRUE)
+			if (data.blife == TRUE)
 				cout << "BONUS LIFE" << endl;
 
 
@@ -93,11 +100,11 @@ int main()
 			i++;//단어 변수
 
 		}
-		else if (lv == LV_2)
+		else if (data.lv == LV_2)
 		{
-			if (bExp == TRUE)
+			if (data.bExp == TRUE)
 				cout << "BONUS EXP" << endl;
-			if (blife == TRUE)
+			if (data.blife == TRUE)
 				cout << "BONUS LIFE" << endl;
 
 			strcpy(outPut, wordLV2[i]);
@@ -105,33 +112,33 @@ int main()
 			i++;//단어 변수
 
 		}
-		else if (lv == LV_3)
+		else if (data.lv == LV_3)
 		{
-			if (bExp == TRUE)
+			if (data.bExp == TRUE)
 				cout << "BONUS EXP" << endl;
-			if (blife == TRUE)
+			if (data.blife == TRUE)
 				cout << "BONUS LIFE" << endl;
 			strcpy(outPut, wordLV3[i]);
 			cout << outPut << endl;//출력
 			i++;//단어 변수
 		}
 
-		else if (lv == LV_4)
+		else if (data.lv == LV_4)
 		{
-			if (bExp == TRUE)
+			if (data.bExp == TRUE)
 				cout << "BONUS EXP" << endl;
-			if (blife == TRUE)
+			if (data.blife == TRUE)
 				cout << "BONUS LIFE" << endl;
 			strcpy(outPut, wordLV4[i]);
 			cout << outPut << endl;//출력
 			i++;//단어 변수
 		}
 
-		else if (lv == LV_5)
+		else if (data.lv == LV_5)
 		{
-			if (bExp == TRUE)
+			if (data.bExp == TRUE)
 				cout << "BONUS EXP" << endl;
-			if (blife == TRUE)
+			if (data.blife == TRUE)
 				cout << "BONUS LIFE" << endl;
 			strcpy(outPut, wordLV4[i]);
 			cout << outPut << endl;//출력
@@ -145,74 +152,82 @@ int main()
 		{
 			system("cls");// 테스트용
 			cout << "성공" << endl;// 테스트용
-			Exp++;
-			if (bExp == 1)
+			data.Exp++;
+			if (data.bExp == 1)
 			{
-				Exp += 2;
-				bExp = 0;
+				data.Exp += 2;
+				data.bExp = 0;
 			}
-			else if (blife == 1)
+			else if (data.blife == 1)
 			{
-				life++;
-				blife = 0;
+				data.life++;
+				data.blife = 0;
 			}
 		}
 		else
 		{
 			system("cls");// 테스트용
 			cout << "실패" << endl;// 테스트용
-			bExp = 0;
-			blife = 0;
-			life--;
+			data.bExp = 0;
+			data.blife = 0;
+			data.life--;
 		}
 
 
 
 		//레벨업 가능 판별 후 가능이면 레벨업
-		if (lv == LV_1 && Exp >= 3)
+		if (data.lv == LV_1 && data.Exp >= 3)
 		{
-			lv++;
+			data.lv++;
 			i = 0;
 
 		}
 
-		else if (lv == LV_2 && Exp >= 6)
+		else if (data.lv == LV_2 && data.Exp >= 6)
 		{
-			lv++;
+			data.lv++;
+			i = 0;
+
 
 		}
-		else if (lv == LV_3 && Exp >= 9)
+		else if (data.lv == LV_3 && data.Exp >= 9)
 		{
-			lv++;
+			data.lv++;
+			i = 0;
+
 
 		}
-		else if (lv == LV_4 && Exp >= 12)
+		else if (data.lv == LV_4 && data.Exp >= 12)
 		{
-			lv++;
+			data.lv++;
+			i = 0;
+
 
 		}
-		else if (lv == LV_5 && Exp >= 15)
+		else if (data.lv == LV_5 && data.Exp >= 15)
 		{
-			lv++;
+			data.lv++;
+			i = 0;
+
 		}
 		// 승리 여부
-		if (lv == 6)
+		if (data.lv == 6)
 		{
 			cout << "승리" << endl;
 			return 1;
 		}
 
 		//라이프 없음 죽음
-		if (life == 0)
+		if (data.life == 0)
 		{
 			cout << "패패" << endl;
 			exit(1);
 		}
 
 		//결과 출력
-		cout << "lv" << lv << endl;
-		cout << "exp" << Exp << endl;
-		cout << "life" << life << endl;
+		cout << "lv" << data.lv << endl;
+		cout << "exp" << data.Exp << endl;
+		cout << "life" << data.life << endl;
 		cout << endl << endl << endl << endl;
 		//반복 끝
 
