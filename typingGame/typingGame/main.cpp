@@ -44,7 +44,7 @@ int main()
 	char outPut[64] = {};
 
 	char input;
-
+	 
 	// 초기 설정
 	int lv = TRUE;
 	int i = Init;
