@@ -9,4 +9,6 @@ struct Data
 	int bonus;
 	int bExp;
 	int blife;
+	char answer[64] = {};
+	char outPut[64] = {};
 };
